@@ -1,15 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
+import './App.css'  
+import { Children } from 'react'
+import AppLayout from './layouts/app-layout'
+import Dashboard from './pages/dashboard'
+import Auth from './pages/auth'
+import RedirectLink from './pages/redirect-link'
+import Link from './pages/link'
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout/>,
+    Children: [
+      {
+        path: '/',
+        element:<LandingPage/>
+      },
+      {
+        path: '/dashboard',
+        element:<Dashboard/>
+      },
+      {
+        path: '/auth',
+        element:<Auth/>
+      },
+      {
+        path: '/link/:id',
+        element:<Link/>
+      },
+      {
+        path: '/id',
+        element:<RedirectLink/>
+      },
+    ]
+  }
+])
+
 
 function App() {
 
-  return (
-    <>
-      <div className='text-2xl text-red-700'>Read me</div>
-    </>
-  )
+  return <RouterProvider router={router}/>
 }
 
 export default App
