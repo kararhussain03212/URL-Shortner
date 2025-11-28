@@ -1,7 +1,8 @@
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'  
 import { Children } from 'react'
 import AppLayout from './layouts/app-layout'
+import LandingPage from './pages/landing'
 import Dashboard from './pages/dashboard'
 import Auth from './pages/auth'
 import RedirectLink from './pages/redirect-link'
@@ -10,7 +11,7 @@ import Link from './pages/link'
 const router = createBrowserRouter([
   {
     element: <AppLayout/>,
-    Children: [
+    children: [
       {
         path: '/',
         element:<LandingPage/>
