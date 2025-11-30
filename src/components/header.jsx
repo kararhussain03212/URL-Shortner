@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const Header = () => {
   const navigate = useNavigate();
-  const user = true;
+  const user = false;
   return (
     <nav className="py-8 flex justify-between items-center">
       <Link to="/">
