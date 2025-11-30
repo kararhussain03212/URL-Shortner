@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useState } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -9,6 +10,10 @@ import {
 } from "@/components/ui/accordion";
 
 const LandingPage = () => {
+
+  const [lonUrl, setLongUrl] = useState("")
+
+
   return (
     <div className="flex flex-col items-center">
       <h2 className="my-10 sm:my-16 text-3xl sm:text-6xl lg:text-7xl leading-tight tracking-tight text-white text-center font-extrabold">
