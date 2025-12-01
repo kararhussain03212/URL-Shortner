@@ -15,6 +15,7 @@ import Error from "./error";
 import * as Yup from "yup";
 import useFetch from "@/hooks/use-fetch";
 import { login } from "@/db/apiAuth";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Login = () => {
   const [errors, setErrors] = useState([]);
@@ -22,6 +23,10 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  let [searchParam] = useSearchParams();
+  const longLink = searchParam.get("createNew");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,13 +36,14 @@ const Login = () => {
     }));
   };
 
-    const {data, error, loading, fn: fnLogin} = useFetch(login, fromData);
-
-    useEffect(() => {
-      console.log(data)
-      
-    }, [data, error])
-    
+  const { data, error, loading, fn: fnLogin } = useFetch(login, fromData);
+  const {fetchUser} = UrlState()
+  useEffect(() => {
+    if (error === null && data) {
+      navigate(`/dashboard${longLink ? `createNew=${longLink}`: ""}`)
+      fetchUser();
+    }
+  }, [data, error]);
 
   const handleLogin = async () => {
     setErrors([]);
@@ -46,8 +52,7 @@ const Login = () => {
         email: Yup.string()
           .email("invalid Email")
           .required("Email is Required"),
-        password: Yup
-          .string()
+        password: Yup.string()
           .min(6, "password must be at least 6 characters")
           .required("Password is Required"),
       });
