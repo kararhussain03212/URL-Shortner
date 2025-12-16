@@ -15,6 +15,7 @@ import * as Yup from "yup";
 import useFetch from "@/hooks/use-fetch";
 import { signup } from "@/db/apiAuth";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { UrlState } from "@/context";
 
 const Signup = () => {
   const [errors, setErrors] = useState([]);
@@ -57,7 +58,7 @@ const Signup = () => {
         password: Yup.string()
           .min(6, "password must be at least 6 characters")
           .required("Password is Required"),
-          profile_pic: Yup.string().required("Profile picture is required"),
+          profile_pic: Yup.mixed().required("Profile picture is required"),
       });
 
       await schema.validate(fromData, { abortEarly: false });

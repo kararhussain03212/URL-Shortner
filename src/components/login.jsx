@@ -20,7 +20,7 @@ import { UrlState } from "@/context";
 
 const Login = () => {
   const [errors, setErrors] = useState([]);
-  const [fromData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
@@ -58,9 +58,9 @@ const Login = () => {
           .required("Password is Required"),
       });
 
-      await schema.validate(fromData, { abortEarly: false });
+      await schema.validate(formData, { abortEarly: false });
       // api call
-      await fnLogin(fromData);
+      await fnLogin(formData);
     } catch (e) {
       const newErrors = {};
 
